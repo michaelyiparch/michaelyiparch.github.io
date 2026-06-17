@@ -163,6 +163,24 @@
   /* ANIMATIONS */
   .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
   .fade-in.visible{opacity:1;transform:translateY(0)}
+
+  /* Image reveal on scroll */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* Hero text stagger */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+  .hero__name{animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s both}
+  .hero__subtitle{animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s both}
+  .hero__line{animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.45s both}
+  .hero__location{animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.55s both}
+
+  /* Subtle float on diagram */
+  @keyframes float{0%,100%{transform:translateY(-50%)}50%{transform:translateY(calc(-50% - 12px))}}
+  .hero__diagram{animation:float 6s ease-in-out infinite}
+
+  /* Project card lift */
+  .project-card{transition:transform 0.4s cubic-bezier(0.22,1,0.36,1),box-shadow 0.4s ease}
 </style>
 </head>
 <body>
@@ -302,7 +320,7 @@
 <section class="project-detail" id="aero-matrix">
 
   <!-- Full-bleed hero image -->
-  <div class="pd-hero">
+  <div class="pd-hero reveal">
     <img src="images/cover.jpg" alt="The Aero-Matrix">
   </div>
 
@@ -322,18 +340,18 @@
   </div>
 
   <!-- Rendering 2 — interior atmosphere -->
-  <div class="pd-image-full">
+  <div class="pd-image-full reveal">
     <img src="images/modular-void.jpg" alt="Modular Void">
   </div>
   <div class="pd-caption">The Hollow Module — voids in the grid become breathing pockets for wind and social life.</div>
 
-  <div class="pd-image-full">
+  <div class="pd-image-full reveal">
     <img src="images/private-unit.jpg" alt="Private Unit">
   </div>
   <div class="pd-caption">The Private Unit — compact MiC living with a large window opening to the balcony for natural light and breeze.</div>
 
   <!-- Two renderings side by side -->
-  <div class="pd-image-pair">
+  <div class="pd-image-pair reveal">
     <div><img src="images/communal-heart.jpg" alt="Communal Heart" style="width:100%;height:auto;display:block"></div>
     <div><img src="images/lounge.jpg" alt="The Lounge" style="width:100%;height:auto;display:block"></div>
   </div>
@@ -345,7 +363,7 @@
   </div>
 
   <!-- Plan -->
-  <div class="pd-plan">
+  <div class="pd-plan reveal">
     <span class="section-label" style="text-align:center;margin-bottom:1rem;">Typical Floor Plan</span>
     <img src="images/plan-tfp.jpg" alt="Typical Floor Plan">
     <div class="pd-caption">Typical floor — mirrored MiC modules minimize production types, maximize cross-ventilation.</div>
@@ -441,7 +459,7 @@
 <script>
   (function(){
     var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
-    document.querySelectorAll('.fade-in').forEach(function(el){o.observe(el)});
+    document.querySelectorAll('.fade-in,.reveal').forEach(function(el){o.observe(el)});
   })();
   (function(){
     var o=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.querySelectorAll('.stat__number').forEach(function(c){var t=parseInt(c.getAttribute('data-count')),d=1500,s=performance.now();function u(n){var p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,3);c.textContent=Math.round(e*t);if(p<1)requestAnimationFrame(u)}requestAnimationFrame(u)});o.unobserve(entry.target)}})},{threshold:0.5});
