@@ -93,9 +93,9 @@
   .pd-image-full img{width:100%;height:auto;display:block}
 
   /* Two-column images */
-  .pd-image-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:1200px;margin:0 auto 2rem;padding:0 2rem}
+  .pd-image-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1200px;margin:0 auto 2rem;padding:0 2rem}
   .pd-image-pair img{width:100%;height:auto;display:block;aspect-ratio:16/10;object-fit:cover}
-  @media(max-width:400px){.pd-image-pair{gap:0.5rem;padding:0 1rem}}
+  @media(max-width:640px){.pd-image-pair{grid-template-columns:1fr;gap:1rem}.pd-image-pair img{aspect-ratio:auto}}
 
   /* Image with caption */
   .pd-image-caption{padding:0 2rem;max-width:1200px;margin:0 auto 3rem}
