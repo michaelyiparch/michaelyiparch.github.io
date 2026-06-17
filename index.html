@@ -223,8 +223,8 @@
     <div class="projects__grid">
 
       <!-- Aero-Matrix -->
-      <a href="#aero-matrix" class="project-card" onclick="return openProject('aero-matrix')">
-        <div class="project-card__image"><img src="images/render-01.jpg" alt="The Aero-Matrix"></div>
+      <a href="#work" class="project-card" onclick="openProject('aero-matrix');return false;">
+        <div class="project-card__image"><img src="images/cover.jpg" alt="The Aero-Matrix"></div>
         <div class="project-card__body">
           <div class="project-card__tag">Year 3 Studio · 2026</div>
           <h3 class="project-card__title">The Aero-Matrix: High-Rise Porosity System</h3>
@@ -302,11 +302,11 @@
 <section class="project-detail" id="aero-matrix">
 
   <!-- Close button -->
-  <a href="#work" class="btn-close" onclick="return closeProject('aero-matrix')">Close</a>
+  <a href="#work" class="btn-close" onclick="closeProject('aero-matrix');return false;">Close</a>
 
   <!-- Full-bleed hero image -->
   <div class="pd-hero">
-    <img src="images/render-01.jpg" alt="The Aero-Matrix — Modular Void">
+    <img src="images/cover.jpg" alt="The Aero-Matrix">
   </div>
 
   <!-- Project header -->
@@ -326,14 +326,19 @@
 
   <!-- Rendering 2 — interior atmosphere -->
   <div class="pd-image-full">
-    <img src="images/render-02.jpg" alt="Interior Atmosphere">
+    <img src="images/modular-void.jpg" alt="Modular Void">
   </div>
-  <div class="pd-caption">The Private Unit — compact, efficient, flooded with natural light and fresh air through the full-height window</div>
+  <div class="pd-caption">The Modular Void — an open-air portal carved through the building mass, where wind and light enter the matrix</div>
+
+  <div class="pd-image-full">
+    <img src="images/private-unit.jpg" alt="Private Unit">
+  </div>
+  <div class="pd-caption">The Private Unit — compact and efficient, with a full-height window connecting the room to the balcony and the city beyond</div>
 
   <!-- Two renderings side by side -->
   <div class="pd-image-pair">
-    <div><img src="images/render-03.jpg" alt="Communal Heart" style="width:100%;height:auto;display:block"></div>
-    <div><img src="images/render-04.jpg" alt="The Lounge" style="width:100%;height:auto;display:block"></div>
+    <div><img src="images/communal-heart.jpg" alt="Communal Heart" style="width:100%;height:auto;display:block"></div>
+    <div><img src="images/lounge.jpg" alt="The Lounge" style="width:100%;height:auto;display:block"></div>
   </div>
   <div class="pd-caption" style="margin-bottom:4rem;">Left: The Communal Heart — a shared kitchen and living space where residents gather. &nbsp;·&nbsp; Right: The Lounge — an elevated social pocket with views across Tuen Mun.</div>
 
@@ -354,7 +359,7 @@
     <a href="portfolio.pdf" download class="btn-download">↓ Download Full Portfolio (PDF)</a>
   </div>
   <div class="pd-back">
-    <a href="#work" onclick="return closeProject('aero-matrix')">← Back to Projects</a>
+    <a href="#work" onclick="closeProject('aero-matrix');return false;">← Back to Projects</a>
   </div>
 
 </section>
@@ -443,7 +448,7 @@
   })();
   function openProject(id){
     var el=document.getElementById(id);
-    if(el){el.classList.add('project-detail--open');window.scrollTo({top:0,behavior:'smooth'})}
+    if(el){el.classList.add('project-detail--open');el.scrollIntoView({behavior:'smooth'})}
     return false;
   }
   function closeProject(id){
