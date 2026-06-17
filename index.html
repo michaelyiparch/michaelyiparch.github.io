@@ -72,7 +72,7 @@
   .project-detail{display:none;background:var(--white);padding-top:4rem}
   .project-detail--open{display:block}
   .btn-close{display:block;text-align:right;padding:1rem 2rem 0;font-family:var(--font-heading);font-size:0.7rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-mid);cursor:pointer;transition:color 0.3s}
-  .btn-close:hover{color:var(--black)}
+  .btn-close{display:none}
 
   /* Full-bleed hero image */
   .pd-hero{width:100%;margin-bottom:4rem}
@@ -300,9 +300,6 @@
 <!-- ================================================================== -->
 <section class="project-detail" id="aero-matrix">
 
-  <!-- Close button -->
-  <span class="btn-close" onclick="closeProject('aero-matrix')">Close</span>
-
   <!-- Full-bleed hero image -->
   <div class="pd-hero">
     <img src="images/cover.jpg" alt="The Aero-Matrix">
@@ -310,7 +307,7 @@
 
   <!-- Project header -->
   <div class="pd-header">
-    <span class="section-label">Year 3 Studio · 2026</span>
+    <span class="section-label" onclick="closeProject('aero-matrix')" style="cursor:pointer;">← Back to Projects &nbsp;·&nbsp; Year 3 Studio · 2026</span>
     <h2>The Aero-Matrix</h2>
     <p class="pd-statement">Hong Kong's "Wall Effect" blocks wind and traps heat. The Aero-Matrix responds with a breathing high-rise — strategic voids become wind portals, restoring natural ventilation to the city.</p>
 
