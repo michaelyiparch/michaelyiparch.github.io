@@ -117,8 +117,8 @@
 
   /* Back link at bottom */
   .pd-back{text-align:center;padding:0 2rem 5rem}
-  .pd-back a{font-family:var(--font-heading);font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-mid);text-decoration:none;transition:color 0.3s}
-  .pd-back a:hover{color:var(--black)}
+  .pd-back a,.pd-back span{font-family:var(--font-heading);font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-mid);text-decoration:none;transition:color 0.3s;cursor:pointer}
+  .pd-back a:hover,.pd-back span:hover{color:var(--black)}
 
   /* SKILLS */
   .skills{padding:5rem 0;background:var(--black);color:var(--white)}
@@ -202,8 +202,9 @@
     <span class="section-label">About</span>
     <div class="about__grid">
       <div class="about__text">
-        <p class="lead">"Architecture must breathe — especially in the densest city on Earth."</p>
-        <p>I'm Michael Yip (Yip Hoi Kwong), a Year 3 architecture student at Chu Hai College. My work explores high-density urban housing through computational design, modular construction, and environmental simulation. I use Revit, Rhino, Grasshopper, and Adobe Suite to produce work that is technically grounded and spatially ambitious.</p>
+        <p class="lead">"Architecture is the negotiation between density and dignity — between what the city demands and what people deserve."</p>
+        <p>Michael Yip is a Year 3 architecture student at Chu Hai College of Higher Education in Hong Kong. Working at the intersection of computational design, modular construction, and environmental performance, his practice investigates how architecture can reconcile the extreme conditions of the contemporary city with spaces of generosity, light, and breath.</p>
+        <p>Proficient across Revit, Rhino, Grasshopper, and the Adobe Suite — with developing expertise in CFD simulation and parametric workflows — he approaches each project as both a technical problem and a spatial proposition. His work spans high-density housing, adaptive reuse, and public infrastructure, always grounded in the specific urban conditions of Hong Kong.</p>
       </div>
       <div class="about__stats">
         <div class="stat"><span class="stat__number" data-count="3">0</span><span class="stat__label">Years of Study</span></div>
@@ -223,14 +224,14 @@
     <div class="projects__grid">
 
       <!-- Aero-Matrix -->
-      <a href="#work" class="project-card" onclick="openProject('aero-matrix');return false;">
+      <div class="project-card" onclick="openProject('aero-matrix')">
         <div class="project-card__image"><img src="images/cover.jpg" alt="The Aero-Matrix"></div>
         <div class="project-card__body">
           <div class="project-card__tag">Year 3 Studio · 2026</div>
           <h3 class="project-card__title">The Aero-Matrix: High-Rise Porosity System</h3>
           <p class="project-card__desc">A breathing high-rise for Tuen Mun — modular construction meets natural ventilation.</p>
         </div>
-      </a>
+      </div>
 
       <!-- Project 2 -->
       <div class="project-card">
@@ -302,7 +303,7 @@
 <section class="project-detail" id="aero-matrix">
 
   <!-- Close button -->
-  <a href="#work" class="btn-close" onclick="closeProject('aero-matrix');return false;">Close</a>
+  <span class="btn-close" onclick="closeProject('aero-matrix')">Close</span>
 
   <!-- Full-bleed hero image -->
   <div class="pd-hero">
@@ -359,7 +360,7 @@
     <a href="portfolio.pdf" download class="btn-download">↓ Download Full Portfolio (PDF)</a>
   </div>
   <div class="pd-back">
-    <a href="#work" onclick="closeProject('aero-matrix');return false;">← Back to Projects</a>
+    <span style="cursor:pointer;font-family:var(--font-heading);font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-mid);" onclick="closeProject('aero-matrix')">← Back to Projects</span>
   </div>
 
 </section>
@@ -448,8 +449,15 @@
   })();
   function openProject(id){
     var el=document.getElementById(id);
-    if(el){el.classList.add('project-detail--open');el.scrollIntoView({behavior:'smooth'})}
-    return false;
+    if(el){
+      el.classList.add('project-detail--open');
+      // Need a frame for display:none → display:block before scroll works
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          el.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+      });
+    }
   }
   function closeProject(id){
     var el=document.getElementById(id);
