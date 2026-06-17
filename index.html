@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Yip — Architecture Portfolio</title>
+<meta name="description" content="Michael Yip — Yip Hoi Kwong. Architecture student, Chu Hai College. The Aero-Matrix: High-Rise Porosity System for Hong Kong.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #fafaf8;
+    --off-white: #f0efe8;
+    --gray-light: #d4d3cc;
+    --gray-mid: #8a8880;
+    --gray-dark: #2a2a28;
+    --accent: #00b4d8;
+    --accent-warm: #ff6b35;
+    --accent-green: #2ecc71;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .nav__link, .btn, .project__tag {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.92;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+
+  h3 { font-size: 1.2rem; font-weight: 500; }
+
+  p { font-size: 1.05rem; color: #3a3a36; max-width: 65ch; }
+
+  .section-label {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* ============================================================
+     NAVIGATION
+     ============================================================ */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+    color: var(--white);
+  }
+
+  .nav__logo {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .nav__links { display: flex; gap: 2rem; list-style: none; }
+  .nav__link {
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: opacity 0.3s;
+  }
+  .nav__link:hover { opacity: 0.6; }
+
+  @media (max-width: 640px) {
+    .nav { padding: 1rem 1.2rem; }
+    .nav__links { gap: 1rem; }
+    .nav__link { font-size: 0.68rem; }
+  }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 2.5rem 4rem;
+    background: var(--black);
+    color: var(--white);
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    opacity: 0.10;
+    pointer-events: none;
+  }
+
+  .hero__content { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
+
+  .hero__project {
+    font-family: var(--font-heading);
+    font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .hero__name {
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .hero__subtitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--gray-light);
+    margin-bottom: 2rem;
+  }
+
+  .hero__line {
+    width: 100px;
+    height: 2px;
+    background: var(--accent-warm);
+    margin-bottom: 2rem;
+  }
+
+  .hero__location {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    color: var(--gray-mid);
+  }
+
+  /* Hero isometric diagram */
+  .hero__diagram {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40%;
+    max-width: 500px;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .hero__diagram { display: none; }
+    .hero { padding: 6rem 1.2rem 3rem; }
+  }
+
+  /* ============================================================
+     IMAGE SLOTS (for portfolio images)
+     ============================================================ */
+  .img-slot {
+    background: var(--gray-dark);
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .img-slot__placeholder {
+    color: var(--gray-mid);
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  /* ============================================================
+     ABOUT
+     ============================================================ */
+  .about {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 2.5rem;
+    background: var(--white);
+  }
+
+  .about__inner { max-width: 1100px; margin: 0 auto; }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about__text p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .about__text .lead {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.45;
+    font-style: italic;
+    color: var(--black);
+    margin-bottom: 2.5rem;
+  }
+
+  .about__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .stat {
+    background: var(--off-white);
+    padding: 1.8rem;
+    border-left: 3px solid var(--accent);
+  }
+
+  .stat__number {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--black);
+    display: block;
+  }
+
+  .stat__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-mid);
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .about__grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about { padding: 4rem 1.2rem; }
+  }
+
+  /* ============================================================
+     PROJECT SECTIONS
+     ============================================================ */
+  .project-section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2.5rem;
+  }
+
+  .project-section--dark { background: var(--black); color: var(--white); }
+  .project-section--dark p { color: var(--gray-light); }
+  .project-section--light { background: var(--white); }
+  .project-section--off { background: var(--off-white); }
+
+  .project-section__inner { max-width: 1100px; margin: 0 auto; }
+
+  .project-section__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .project-section__text h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .project-section__text p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .project-section__text .highlight {
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+    font-style: italic;
+    margin: 1.5rem 0;
+    color: var(--gray-mid);
+  }
+
+  @media (max-width: 768px) {
+    .project-section__grid { grid-template-columns: 1fr; gap: 2rem; }
+    .project-section { padding: 3rem 1.2rem; }
+    .project-section__grid.image-first .img-slot { order: -1; }
+  }
+
+  /* ============================================================
+     THREE-COLUMN GRID (for Atmosphere section)
+     ============================================================ */
+  .triple-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .triple-card {
+    background: var(--white);
+    overflow: hidden;
+    border: 1px solid var(--gray-light);
+  }
+
+  .triple-card .img-slot { aspect-ratio: 4/3; }
+
+  .triple-card__body { padding: 1.5rem; }
+
+  .triple-card__body h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .triple-card__body p {
+    font-size: 0.88rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .triple-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============================================================
+     PROCESS TIMELINE (for concept steps)
+     ============================================================ */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .process-step {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: rgba(255,255,255,0.04);
+    border-top: 2px solid var(--accent);
+  }
+
+  .process-step__num {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+
+  .process-step__title {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0.8rem 0 0.4rem;
+    color: var(--white);
+  }
+
+  .process-step__desc {
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .process-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============================================================
+     SKILLS BAR
+     ============================================================ */
+  .skills {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2.5rem;
+    background: var(--off-white);
+  }
+
+  .skills__inner { max-width: 1100px; margin: 0 auto; }
+
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .skill {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--white);
+  }
+
+  .skill__icon {
+    width: 40px; height: 40px;
+    margin: 0 auto 1rem;
+  }
+
+  .skill__name {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  .skill__level {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-mid);
+  }
+
+  @media (max-width: 768px) { .skills__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .skills__grid { grid-template-columns: 1fr; } .skills { padding: 4rem 1.2rem; } }
+
+  /* ============================================================
+     EDUCATION
+     ============================================================ */
+  .education {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 2.5rem;
+    background: var(--white);
+  }
+
+  .education__inner { max-width: 1100px; margin: 0 auto; }
+
+  .timeline {
+    margin-top: 2rem;
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--gray-light);
+  }
+
+  .timeline__item {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .timeline__item::before {
+    content: "";
+    position: absolute;
+    left: -3.35rem; top: 0.5rem;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .timeline__year {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline__title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .timeline__subtitle { color: var(--gray-mid); margin-top: 0.2rem; }
+
+  @media (max-width: 640px) { .education { padding: 4rem 1.2rem; } }
+
+  /* ============================================================
+     MANIFESTO
+     ============================================================ */
+  .manifesto {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 2.5rem;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+  }
+
+  .manifesto__inner { max-width: 750px; margin: 0 auto; }
+
+  .manifesto blockquote {
+    font-family: var(--font-heading);
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .manifesto__line {
+    width: 50px;
+    height: 2px;
+    background: var(--accent-warm);
+    margin: 0 auto 1.5rem;
+  }
+
+  .manifesto cite {
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 640px) { .manifesto { padding: 5rem 1.2rem; } }
+
+  /* ============================================================
+     CONTACT
+     ============================================================ */
+  .contact {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 2.5rem;
+    background: var(--white);
+  }
+
+  .contact__inner { max-width: 1100px; margin: 0 auto; }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-top: 2rem;
+  }
+
+  .contact h3 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+
+  .contact__item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .contact__dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .contact__item a {
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gray-light);
+    transition: border-color 0.3s;
+  }
+  .contact__item a:hover { border-color: var(--accent); }
+
+  .contact__availability {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--off-white);
+    border-left: 3px solid var(--accent);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .contact__grid { grid-template-columns: 1fr; gap: 3rem; }
+    .contact { padding: 4rem 1.2rem; }
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .footer {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 2.5rem;
+    background: var(--black);
+    color: var(--gray-mid);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+
+  .footer__diagram { display: flex; gap: 0.5rem; align-items: center; }
+
+  .footer__dot {
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .footer__dot:nth-child(2) { opacity: 0.6; }
+  .footer__dot:nth-child(3) { opacity: 0.3; }
+
+  @media (max-width: 480px) {
+    .footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* ============================================================
+     FADE-IN ANIMATION
+     ============================================================ */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav__logo">Michael Yip</div>
+  <ul class="nav__links">
+    <li><a href="#about" class="nav__link">About</a></li>
+    <li><a href="#project" class="nav__link">Project</a></li>
+    <li><a href="#skills" class="nav__link">Skills</a></li>
+    <li><a href="#contact" class="nav__link">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="top">
+  <!-- Isometric building diagram -->
+  <svg class="hero__diagram" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(200,30)" stroke="white" stroke-width="1.2" fill="none" opacity="0.7">
+      <!-- Podium base -->
+      <polygon points="-80,80 0,40 80,80 0,120" />
+      <polygon points="-80,80 0,120 0,200 -80,160" />
+      <polygon points="0,120 80,80 80,160 0,200" />
+      <!-- Tower - multiple stacked modules with gaps -->
+      <polygon points="-60,20 -20,0 20,20 -20,40" />
+      <polygon points="-60,20 -20,40 -20,80 -60,60" />
+      <polygon points="-20,40 20,20 20,60 -20,80" />
+      <!-- Gap (hollow module) -->
+      <polygon points="-20,-40 20,-60 60,-40 20,-20" />
+      <polygon points="-20,-40 20,-20 20,20 -20,0" />
+      <polygon points="20,-20 60,-40 60,0 20,20" />
+      <!-- Top modules -->
+      <polygon points="-50,-80 -10,-100 30,-80 -10,-60" />
+      <polygon points="-50,-80 -10,-60 -10,-20 -50,-40" />
+      <polygon points="-10,-60 30,-80 30,-40 -10,-20" />
+      <!-- Wind flow arrows -->
+      <g stroke="rgba(0,180,216,0.5)" stroke-width="1.5">
+        <path d="M-120,0 Q-60,-10 -30,-5" marker-end="url(#arrow)"/>
+        <path d="M-120,20 Q-60,30 -30,25" marker-end="url(#arrow)"/>
+        <path d="M40,60 Q80,55 120,50" marker-end="url(#arrow)"/>
+        <path d="M40,80 Q80,75 120,70" marker-end="url(#arrow)"/>
+      </g>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 Z" fill="rgba(0,180,216,0.5)"/>
+        </marker>
+      </defs>
+    </g>
+  </svg>
+
+  <div class="hero__content">
+    <div class="hero__project">Portfolio 2026</div>
+    <h1 class="hero__name">Michael<br>Yip</h1>
+    <p class="hero__subtitle">Yip Hoi Kwong · Architecture Student · Year 3</p>
+    <div class="hero__line"></div>
+    <p class="hero__location">Chu Hai College of Higher Education · Hong Kong</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="about fade-in" id="about">
+  <div class="about__inner">
+    <span class="section-label">About</span>
+    <div class="about__grid">
+      <div class="about__text">
+        <p class="lead">"Architecture must breathe — especially in the densest city on Earth."</p>
+        <p>
+          I'm Michael Yip (Yip Hoi Kwong), a Year 3 architecture student at Chu Hai College
+          of Higher Education in Hong Kong. My work focuses on high-density urban housing,
+          modular construction systems, and environmental performance — exploring how
+          architecture can reconcile the extreme density of Hong Kong with the fundamental
+          human need for air, light, and community.
+        </p>
+        <p>
+          My design approach is research-driven: I use CFD wind simulation, modular logic,
+          and parametric thinking to develop projects that are technically grounded and
+          spatially ambitious. I work across Revit, Rhino, Grasshopper, and Adobe Suite
+          to produce work that communicates clearly at every scale.
+        </p>
+      </div>
+      <div class="about__stats">
+        <div class="stat">
+          <span class="stat__number" data-count="3">0</span>
+          <span class="stat__label">Years of Study</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number" data-count="5">0</span>
+          <span class="stat__label">Design Software</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number" data-count="1">0</span>
+          <span class="stat__label">Major Studio Project</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number" data-count="16">0</span>
+          <span class="stat__label">Portfolio Pages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT: THE AERO-MATRIX — Analysis
+     ============================================================ -->
+<section class="project-section project-section--dark fade-in" id="project">
+  <div class="project-section__inner">
+    <span class="section-label" style="color:var(--gray-mid);">Featured Project</span>
+    <h2 style="color:var(--white);">The Aero-Matrix</h2>
+    <p style="color:var(--gray-light); margin-top:0.5rem;">High-Rise Porosity System · San Sau Street, Tuen Mun, Hong Kong</p>
+
+    <div class="project-section__grid" style="margin-top:3rem;">
+      <div class="project-section__text">
+        <span class="section-label" style="color:var(--accent);">Analysis</span>
+        <h3 style="color:var(--white);">Urban Suffocation:<br>A Hong Kong Story</h3>
+        <p>Hong Kong's high-density urban fabric suffers from the <strong>"Wall Effect,"</strong> where massive building footprints block natural air circulation. This traps heat and degrades air quality, significantly affecting neighborhood livability.</p>
+        <p>The project tackles this through <strong>Modular Integrated Construction (MiC)</strong>, moving construction into controlled factory environments for maximum efficiency and precision — reducing material waste, carbon emissions, and on-site disruption.</p>
+        <div class="highlight">
+          "By combining MiC technology with a strategic grid, the building is transformed into a breathing matrix — restoring natural ventilation to the urban environment."
+        </div>
+      </div>
+      <div class="img-slot">
+        <img src="images/analysis-urban.jpg" alt="Urban Suffocation Analysis">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT: Site Analysis
+     ============================================================ -->
+<section class="project-section project-section--light fade-in">
+  <div class="project-section__inner">
+    <div class="project-section__grid image-first">
+      <div class="img-slot">
+        <img src="images/site-analysis.jpg" alt="Site Analysis - Urban Morphology">
+      </div>
+      <div class="project-section__text">
+        <span class="section-label" style="color:var(--accent);">Site Analysis</span>
+        <h3>Urban Morphology &amp;<br>Multi-Level Density</h3>
+        <p>The site at <strong>San Sau Street, Tuen Mun</strong> sits within narrow 'street canyons' and extreme vertical development. I analyzed building footprints at three key heights: <strong>8m, 12m, and 20m</strong>.</p>
+        <p>While the ground level is crowded, the vertical analysis reveals a change in density as we move upward. At the <strong>12m level</strong>, simulations show a significant environmental opening — the city has 'pockets' of wind that can be captured if the building is shaped correctly.</p>
+      </div>
+    </div>
+
+    <div class="project-section__grid" style="margin-top:3rem;">
+      <div class="project-section__text">
+        <span class="section-label" style="color:var(--accent);">Environmental Strategy</span>
+        <h3>CFD Analysis &amp;<br>Design Response</h3>
+        <p>CFD simulation revealed a strong wind corridor at 12m. The building is split into <strong>three functional zones</strong> based on height:</p>
+        <p><strong>0m–8m (The Shield):</strong> A glass-clad podium acts as a physical shield, protecting the street from direct turbulent wind and ensuring pedestrian comfort.</p>
+        <p><strong>8m–12m (The Portal):</strong> A 4-meter open-air terrace catches the wind corridor — the building's 'waist' allows fresh air to flow through rather than blocking it.</p>
+        <p><strong>12m–57m (The Matrix):</strong> The Aero-Matrix system uses modular, permeable design to let air pass through the living units.</p>
+      </div>
+      <div class="img-slot">
+        <img src="images/cfd-section.jpg" alt="Environmental Strategy & CFD Analysis">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT: Case Study & Research
+     ============================================================ -->
+<section class="project-section project-section--off fade-in">
+  <div class="project-section__inner">
+    <span class="section-label" style="color:var(--accent);">Research</span>
+    <h2>Case Study: Structural Framework &amp; MiC Logic</h2>
+
+    <div class="project-section__grid" style="margin-top:2rem;">
+      <div class="project-section__text">
+        <h3>Park View Village</h3>
+        <p style="color:var(--gray-mid); font-size:0.9rem;">Architect: Space · Newcastle, UK · 2016–2018 · 9 Floors · Student Dormitory</p>
+        <p>This case study informed the core structural strategy of the Aero-Matrix by highlighting the separation between <strong>"permanent"</strong> and <strong>"adaptable"</strong> elements.</p>
+        <p>The design adopts a <strong>permanent central core</strong> for stability and vertical circulation, while utilizing MiC for the residential units. By treating the MiC modules as independent <strong>"plug-in" components</strong>, the system allows for high-precision off-site manufacturing and flexible on-site assembly.</p>
+        <div class="highlight">
+          "This separation of permanent and adaptable elements directly enables the empty slots within the grid — the lungs of the building."
+        </div>
+      </div>
+      <div class="img-slot">
+        <img src="images/case-study.jpg" alt="Park View Village Case Study">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT: Concept — From Genetic Unit to Aero-Matrix
+     ============================================================ -->
+<section class="project-section project-section--dark fade-in">
+  <div class="project-section__inner">
+    <span class="section-label" style="color:var(--accent);">Concept</span>
+    <h2 style="color:var(--white);">From Genetic Unit to Aero-Matrix</h2>
+    <p style="color:var(--gray-light); margin-top:0.5rem;">A four-step design methodology for breathing architecture</p>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <span class="process-step__num">01</span>
+        <div class="process-step__title">Unit Prototype</div>
+        <p class="process-step__desc">A "Genetic Unit" whose geometry is shaped to minimize wind resistance and maximize natural airflow.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">02</span>
+        <div class="process-step__title">Symmetric Coupling</div>
+        <p class="process-step__desc">Two units joined by mirroring to form a shared core — creating geometric stability and spatial rhythm.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">03</span>
+        <div class="process-step__title">Systematic Assembly</div>
+        <p class="process-step__desc">Modules stacked with intentional gaps — "Airflow Porosity" that acts as lungs for the building.</p>
+      </div>
+      <div class="process-step">
+        <span class="process-step__num">04</span>
+        <div class="process-step__title">Aero-Matrix Formation</div>
+        <p class="process-step__desc">The final matrix calibrated to Tuen Mun's site-specific winds — a "Breathable Filter" for passive cooling.</p>
+      </div>
+    </div>
+
+    <div class="img-slot" style="margin-top:2rem; aspect-ratio:21/9;">
+      <img src="images/concept-evolution.jpg" alt="From Genetic Unit to Aero-Matrix" style="object-fit:contain;">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT: Structure
+     ============================================================ -->
+<section class="project-section project-section--light fade-in">
+  <div class="project-section__inner">
+    <span class="section-label" style="color:var(--accent);">Structure</span>
+    <h2>Aero-Matrix: Core &amp; Module Integration</h2>
+
+    <div class="project-section__grid" style="margin-top:2rem;">
+      <div class="img-slot">
+        <img src="images/structure-core.jpg" alt="Core and Module Integration">
+      </div>
+      <div class="project-section__text">
+        <p>The Aero-Matrix uses a <strong>central core</strong> to support a system of prefabricated modules. This structural separation makes the building lighter and enables better natural ventilation.</p>
+        <p>The core — containing lifts, stairs, and services — acts as the <strong>permanent structural spine</strong>. Around it, MiC modules are arranged as independent plug-in components, allowing empty slots to be strategically placed for airflow.</p>
+        <p>This approach combines the <strong>efficiency of modular construction</strong> with the <strong>environmental performance of a porous building envelope</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT: Atmosphere — Three Spaces
+     ============================================================ -->
+<section class="project-section project-section--off fade-in">
+  <div class="project-section__inner">
+    <span class="section-label" style="color:var(--accent);">Atmosphere</span>
+    <h2>Three Scales of Living</h2>
+
+    <div class="triple-grid">
+      <!-- Modular Void -->
+      <div class="triple-card">
+        <div class="img-slot">
+          <img src="images/atmosphere-void.jpg" alt="Modular Void">
+        </div>
+        <div class="triple-card__body">
+          <h4>Modular Void: Urban Porosity</h4>
+          <p>The hollow module is a key innovation — by leaving strategic spaces empty in the building grid, we create "breathing pockets" that let wind flow through. These open modules create a "porous" building that helps cool the city, transforming structural gaps into meaningful community spaces.</p>
+        </div>
+      </div>
+
+      <!-- Communal Heart -->
+      <div class="triple-card">
+        <div class="img-slot">
+          <img src="images/atmosphere-communal.jpg" alt="Communal Heart">
+        </div>
+        <div class="triple-card__body">
+          <h4>Communal Heart: The Social Matrix</h4>
+          <p>Located within the upper levels, this communal zone integrates a lounge and open-plan kitchen into the modular grid. Situated adjacent to the hollow MiC modules, the interior benefits from continuous cross-ventilation — merging social interaction with passive environmental performance.</p>
+        </div>
+      </div>
+
+      <!-- Private Unit -->
+      <div class="triple-card">
+        <div class="img-slot">
+          <img src="images/atmosphere-private.jpg" alt="Private Unit">
+        </div>
+        <div class="triple-card__body">
+          <h4>Private Unit: Modular Living</h4>
+          <p>Each residential module is designed for comfort and efficiency within a compact footprint. Large windows connect directly to a private balcony, allowing natural breeze to flow in — proving that modular living can be both functional and high-quality in the busy city of Hong Kong.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECT: Layout & Detail
+     ============================================================ -->
+<section class="project-section project-section--dark fade-in">
+  <div class="project-section__inner">
+    <span class="section-label" style="color:var(--accent);">Layout &amp; Logic</span>
+    <h2 style="color:var(--white);">Plans, Assembly &amp; Detail</h2>
+
+    <div class="project-section__grid" style="margin-top:2rem;">
+      <div class="project-section__text">
+        <h3 style="color:var(--white);">Podium &amp; Typical Floor</h3>
+        <p>The podium acts as the solid base — connecting the design to the busy Hong Kong streets while keeping the structure stable with a permanent core. It manages ground-level space, shields against strong street winds, and directs airflow toward the 12m Wind Portal.</p>
+        <p>The <strong>typical floor</strong> demonstrates the core logic: a strategic arrangement of Residential Modules, Hollow Ventilation Modules, Public Space Modules, and Staircase Modules. A <strong>mirroring strategy</strong> minimizes the variety of MiC types required for production, leading to higher construction efficiency.</p>
+      </div>
+      <div class="img-slot">
+        <img src="images/plans.jpg" alt="Floor Plans - Podium & Ground">
+      </div>
+    </div>
+
+    <div class="project-section__grid" style="margin-top:3rem;">
+      <div class="img-slot">
+        <img src="images/roof-terrace.jpg" alt="Roof Terrace">
+      </div>
+      <div class="project-section__text">
+        <h3 style="color:var(--white);">Roof Terrace: The Sky Lung</h3>
+        <p>The roof serves as the final component of the vertical breathing system. Programmed with community gardens and green terraces aligned with the vertical air-channels below, it acts as a <strong>thermal buffer</strong> — utilizing vegetation to reduce heat absorption while allowing rising warm air to escape freely.</p>
+        <p>At 57m, the rigid modular grid softens into a dynamic landscape of greenery and social pockets — a <strong>'sky lung'</strong> that filters air and provides a serene escape from the high-density urban environment below.</p>
+      </div>
+    </div>
+
+    <div class="project-section__grid" style="margin-top:3rem;">
+      <div class="project-section__text">
+        <h3 style="color:var(--white);">Modular Assembly: Structure &amp; Skin</h3>
+        <p>The <strong>exploded axonometric</strong> reveals the structural anatomy of the MiC unit: a steel frame providing strength during transport and assembly, with high-performance insulation and durable external cladding attached.</p>
+        <p>By separating the structural skeleton from the wall panels, the design allows for <strong>precise manufacturing, fire resistance, weatherproofing, and long-term durability</strong> in Hong Kong's high-density urban climate.</p>
+      </div>
+      <div class="img-slot">
+        <img src="images/detail-exploded.jpg" alt="Modular Assembly Detail">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SYNTHESIS — Conclusion
+     ============================================================ -->
+<section class="project-section project-section--light fade-in">
+  <div class="project-section__inner">
+    <span class="section-label" style="color:var(--accent);">Synthesis</span>
+    <h2>A New Paradigm for<br>High-Density Living</h2>
+
+    <div class="project-section__grid" style="margin-top:2rem;">
+      <div class="project-section__text">
+        <p style="font-size:1.2rem; line-height:1.7;">The Aero-Matrix project demonstrates that high-density housing does not have to be a barrier to the urban environment. By redefining the relationship between structural efficiency and environmental performance, this design provides a scalable solution to the challenges of modern Hong Kong.</p>
+      </div>
+      <div>
+        <div style="padding:1.5rem; background:var(--off-white); margin-bottom:0.8rem; border-left:3px solid var(--accent);">
+          <strong>Solving the Wall Effect</strong><br>
+          <span style="font-size:0.9rem; color:var(--gray-mid);">Strategic Hollow Modules transform the building into a porous infrastructure that restores natural airflow.</span>
+        </div>
+        <div style="padding:1.5rem; background:var(--off-white); margin-bottom:0.8rem; border-left:3px solid var(--accent);">
+          <strong>Efficiency through MiC</strong><br>
+          <span style="font-size:0.9rem; color:var(--gray-mid);">High-quality assembly with minimal waste — the mirroring strategy proves technical standardization can coexist with complex spatial design.</span>
+        </div>
+        <div style="padding:1.5rem; background:var(--off-white); border-left:3px solid var(--accent);">
+          <strong>Community Well-being</strong><br>
+          <span style="font-size:0.9rem; color:var(--gray-mid);">Structural gaps become communal sanctuaries — a more humane approach to compact urban living.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SKILLS
+     ============================================================ -->
+<section class="skills fade-in" id="skills">
+  <div class="skills__inner">
+    <span class="section-label">Tools &amp; Skills</span>
+    <h2>Technical Proficiency</h2>
+    <div class="skills__grid">
+      <div class="skill">
+        <svg class="skill__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="6" width="36" height="36" rx="4"/>
+          <line x1="6" y1="16" x2="42" y2="16"/>
+          <line x1="16" y1="16" x2="16" y2="42"/>
+          <circle cx="28" cy="28" r="6"/>
+        </svg>
+        <div class="skill__name">Revit</div>
+        <div class="skill__level">Advanced</div>
+      </div>
+      <div class="skill">
+        <svg class="skill__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 42 L12 14 L24 6 L36 14 L42 42 Z"/>
+          <path d="M12 14 L24 22 L36 14"/>
+          <path d="M6 42 L24 30 L42 42"/>
+        </svg>
+        <div class="skill__name">Rhino 3D</div>
+        <div class="skill__level">Advanced</div>
+      </div>
+      <div class="skill">
+        <svg class="skill__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="20" r="14"/>
+          <line x1="24" y1="6" x2="24" y2="14"/>
+          <line x1="24" y1="26" x2="24" y2="34"/>
+          <line x1="10" y1="20" x2="18" y2="20"/>
+          <line x1="30" y1="20" x2="38" y2="20"/>
+        </svg>
+        <div class="skill__name">Grasshopper</div>
+        <div class="skill__level">Intermediate</div>
+      </div>
+      <div class="skill">
+        <svg class="skill__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="10" y="10" width="28" height="28"/>
+          <line x1="10" y1="10" x2="38" y2="38"/>
+          <circle cx="18" cy="18" r="3"/>
+          <rect x="28" y="14" width="8" height="4"/>
+        </svg>
+        <div class="skill__name">AutoCAD</div>
+        <div class="skill__level">Advanced</div>
+      </div>
+      <div class="skill">
+        <svg class="skill__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="8" width="32" height="24" rx="3"/>
+          <rect x="14" y="32" width="20" height="4" rx="2"/>
+        </svg>
+        <div class="skill__name">Photoshop</div>
+        <div class="skill__level">Advanced</div>
+      </div>
+      <div class="skill">
+        <svg class="skill__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="14" width="40" height="24" rx="2"/>
+          <path d="M4 22 L24 34 L44 22"/>
+        </svg>
+        <div class="skill__name">Enscape</div>
+        <div class="skill__level">Intermediate</div>
+      </div>
+      <div class="skill">
+        <svg class="skill__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polygon points="24,6 30,34 18,34"/>
+          <circle cx="24" cy="38" r="4"/>
+        </svg>
+        <div class="skill__name">V-Ray</div>
+        <div class="skill__level">Intermediate</div>
+      </div>
+      <div class="skill">
+        <svg class="skill__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="22" cy="22" r="14"/>
+          <line x1="32" y1="32" x2="44" y2="44" stroke-width="2"/>
+        </svg>
+        <div class="skill__name">CFD Simulation</div>
+        <div class="skill__level">Developing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EDUCATION
+     ============================================================ -->
+<section class="education fade-in" id="education">
+  <div class="education__inner">
+    <span class="section-label">Education &amp; Path</span>
+    <h2>Academic Journey</h2>
+    <div class="timeline">
+      <div class="timeline__item">
+        <div class="timeline__year">2024 — Present</div>
+        <div class="timeline__title">Bachelor of Architecture — Year 3</div>
+        <div class="timeline__subtitle">Chu Hai College of Higher Education, Hong Kong</div>
+      </div>
+      <div class="timeline__item">
+        <div class="timeline__year">2026</div>
+        <div class="timeline__title">The Aero-Matrix: High-Rise Porosity System</div>
+        <div class="timeline__subtitle">Year 3 Studio Project — Tuen Mun, Hong Kong</div>
+      </div>
+      <div class="timeline__item">
+        <div class="timeline__year">2022 — 2024</div>
+        <div class="timeline__title">Architectural Foundation Studies</div>
+        <div class="timeline__subtitle">Design fundamentals, architectural history, and technical drawing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MANIFESTO
+     ============================================================ -->
+<section class="manifesto fade-in">
+  <div class="manifesto__inner">
+    <blockquote>
+      "Ultimately, through modular innovation,<br>
+      we can build faster and more efficiently<br>
+      while creating a breathing architecture<br>
+      that benefits both the occupants and the city."
+    </blockquote>
+    <div class="manifesto__line"></div>
+    <cite>Michael Yip — The Aero-Matrix Conclusion, 2026</cite>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="contact fade-in" id="contact">
+  <div class="contact__inner">
+    <span class="section-label">Contact</span>
+    <div class="contact__grid">
+      <div class="contact__info">
+        <h3>Let's work together.</h3>
+        <div class="contact__item">
+          <span class="contact__dot"></span>
+          <a href="mailto:michael.yip@example.com">michael.yip@example.com</a>
+        </div>
+        <div class="contact__item">
+          <span class="contact__dot"></span>
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        </div>
+        <div class="contact__item">
+          <span class="contact__dot"></span>
+          <a href="https://instagram.com" target="_blank">Instagram</a>
+        </div>
+        <div class="contact__item">
+          <span class="contact__dot"></span>
+          <span>Hong Kong SAR</span>
+        </div>
+        <div class="contact__availability">
+          <strong>Open to:</strong> Architecture internships, competition collaborations, freelance drafting &amp; rendering, and research partnerships in high-density housing and modular construction.
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center;">
+        <a href="portfolio.pdf" download style="display:inline-block; padding:1.2rem 2.5rem; background:var(--black); color:var(--white); font-family:var(--font-heading); font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; transition:background 0.3s;" onmouseover="this.style.background='#2a2a28'" onmouseout="this.style.background='var(--black)'">
+          ↓ Download Portfolio (PDF)
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <span>&copy; 2026 Michael Yip — Yip Hoi Kwong. All rights reserved.</span>
+  <div class="footer__diagram">
+    <span class="footer__dot"></span>
+    <span class="footer__dot"></span>
+    <span class="footer__dot"></span>
+    <span>Chu Hai College · Hong Kong</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+  // Fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Animated stat counters
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stat__number').forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-count'));
+          const duration = 1500;
+          const start = performance.now();
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.round(eased * target);
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const statsSection = document.querySelector('.about');
+  if (statsSection) statsObserver.observe(statsSection);
+</script>
+</body>
+</html>
