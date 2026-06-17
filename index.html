@@ -86,10 +86,9 @@
     text-decoration: none; color: inherit; display: block;
   }
   .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
-  .project-card__image {
-    aspect-ratio: 16/10; overflow: hidden; background: var(--gray-dark);
-  }
+  .project-card__image { aspect-ratio: 16/10; overflow: hidden; background: var(--gray-dark); }
   .project-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .project-card__image svg { width: 100%; height: 100%; }
   .project-card:hover .project-card__image img { transform: scale(1.03); }
   .project-card__body { padding: 1.5rem; }
   .project-card__tag { font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
@@ -104,14 +103,14 @@
   .project-detail__hero h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.5rem; }
   .project-detail__hero .subtitle { color: var(--gray-mid); font-size: 1.05rem; }
   .project-detail__image-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; align-items: start; }
-  .project-detail__image-row .img-slot { aspect-ratio: 16/10; overflow: hidden; background: var(--gray-dark); }
-  .project-detail__image-row .img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .project-detail__image-row .img-slot { overflow: hidden; background: var(--off-white); }
+  .project-detail__image-row .img-slot img { width: 100%; height: auto; display: block; }
   .project-detail__image-row .text-block { padding: 0.5rem 0; }
   .project-detail__image-row .text-block h3 { font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 0.6rem; }
   .project-detail__image-row .text-block p { font-size: 0.93rem; line-height: 1.7; color: #3a3a36; margin-bottom: 0.7rem; }
   .project-detail__triple { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 1.5rem 0; }
-  .project-detail__triple .img-slot { aspect-ratio: 4/3; overflow: hidden; background: var(--gray-dark); }
-  .project-detail__triple .img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .project-detail__triple .img-slot { overflow: hidden; background: var(--off-white); }
+  .project-detail__triple .img-slot img { width: 100%; height: auto; display: block; }
   .project-detail__triple .caption { font-size: 0.78rem; color: var(--gray-mid); margin-top: 0.5rem; font-family: var(--font-heading); letter-spacing: 0.04em; }
   @media (max-width: 768px) {
     .project-detail__image-row { grid-template-columns: 1fr; }
@@ -119,9 +118,9 @@
   }
 
   /* ---- IMG SLOT ---- */
-  .img-slot { aspect-ratio: 16/10; overflow: hidden; background: var(--gray-dark); }
-  .img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .img-fit-contain img { object-fit: contain !important; background: var(--black); }
+  .img-slot { overflow: hidden; background: var(--off-white); }
+  .img-slot img { width: 100%; height: auto; display: block; }
+  .img-slot--dark { background: var(--black); }
 
   /* ---- SKILLS ---- */
   .skills { padding: 5rem 0; background: var(--black); color: var(--white); }
@@ -330,7 +329,7 @@
     </div>
 
     <!-- Cover / hero image -->
-    <div class="img-slot img-fit-contain" style="margin-bottom:2rem;">
+    <div class="img-slot img-slot--dark" style="margin-bottom:2rem;">
       <img src="images/cover.jpg" alt="The Aero-Matrix">
     </div>
 
@@ -347,7 +346,7 @@
     </div>
 
     <!-- Concept (full width) -->
-    <div class="img-slot img-fit-contain" style="margin-bottom:1.5rem;">
+    <div class="img-slot" style="margin-bottom:1.5rem;">
       <img src="images/concept-evolution.jpg" alt="Concept Evolution">
     </div>
 
