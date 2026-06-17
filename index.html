@@ -92,14 +92,7 @@
   .pd-image-full{width:100%;padding:0;margin-bottom:0}
   .pd-image-full img{width:100%;height:auto;display:block}
 
-  /* Two-column images */
-  .pd-image-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1200px;margin:0 auto 2rem;padding:0 2rem}
-  .pd-image-pair img{width:100%;height:auto;display:block;aspect-ratio:16/10;object-fit:cover}
-  @media(max-width:640px){.pd-image-pair{grid-template-columns:1fr;gap:1rem}.pd-image-pair img{aspect-ratio:auto}}
-
-  /* Image with caption */
-  .pd-image-caption{padding:0 2rem;max-width:1200px;margin:0 auto 3rem}
-  .pd-image-caption img{width:100%;height:auto;display:block}
+  /* Image caption */
   .pd-caption{font-family:var(--font-heading);font-size:0.7rem;letter-spacing:0.08em;color:var(--gray-mid);margin:0.5rem 0 3rem;text-align:center}
 
   /* Text block */
@@ -339,7 +332,7 @@
     </div>
   </div>
 
-  <!-- Rendering 2 — interior atmosphere -->
+  <!-- 4 images — all full-width, equal treatment -->
   <div class="pd-image-full reveal">
     <img src="images/modular-void.jpg" alt="Modular Void">
   </div>
@@ -350,17 +343,15 @@
   </div>
   <div class="pd-caption">The Private Unit — compact MiC living with a large window opening to the balcony for natural light and breeze.</div>
 
-  <!-- Two renderings side by side -->
-  <div class="pd-image-pair reveal">
-    <div><img src="images/communal-heart.jpg" alt="Communal Heart" style="width:100%;height:auto;display:block"></div>
-    <div><img src="images/lounge.jpg" alt="The Lounge" style="width:100%;height:auto;display:block"></div>
+  <div class="pd-image-full reveal">
+    <img src="images/communal-heart.jpg" alt="Communal Heart">
   </div>
-  <div class="pd-caption">Left: Communal Heart — shared kitchen and living, open to the hollow modules for constant fresh air. &nbsp;·&nbsp; Right: The Lounge — social space with passive cooling and unobstructed city views.</div>
+  <div class="pd-caption">The Communal Heart — shared kitchen and living, open to the hollow modules for constant fresh air.</div>
 
-  <!-- Atmosphere text -->
-  <div class="pd-text">
-    <p>Structural gaps become communal sanctuaries — nature and fresh air brought into the heart of high-density Hong Kong.</p>
+  <div class="pd-image-full reveal">
+    <img src="images/lounge.jpg" alt="The Lounge">
   </div>
+  <div class="pd-caption">The Lounge — social space with passive cooling and unobstructed city views.</div>
 
   <!-- Plan -->
   <div class="pd-plan reveal">
